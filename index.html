@@ -1,1 +1,65 @@
-<!DOCTYPE html><title></title>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Base64 URL Encoder</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+    background-color: #f4f4f4;
+  }
+  #container {
+    max-width: 400px;
+    margin: 0 auto;
+    background-color: white;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+  }
+  button {
+    padding: 10px 15px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+  }
+</style>
+</head>
+<body>
+<div id="container">
+  <h1>Flipper URL share</h1>
+  <input type="text" id="urlInput" placeholder="Enter Dropbox URL">
+  <button id="generateBtn">Generate URL</button>
+  <p id="output"></p>
+</div>
+<script>
+  document.getElementById("generateBtn").addEventListener("click", function() {
+    var urlInput = document.getElementById("urlInput").value.trim();
+    if (isValidDropboxUrl(urlInput)) {
+      var base64Url = btoa(urlInput);
+      var pdfUrl = `viewer.html?magazineMode=true&pdfurl=${base64Url}`;
+      document.getElementById("output").innerHTML = `
+        <a href="${pdfUrl}" target="_blank">${pdfUrl}</a>
+      `;
+    } else {
+      document.getElementById("output").innerHTML = "Invalid Dropbox URL";
+    }
+  });
+
+  function isValidDropboxUrl(url) {
+    return /^https:\/\/www\.dropbox\.com\/s\//i.test(url);
+  }
+</script>
+</body>
+</html>
