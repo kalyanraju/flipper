@@ -57,8 +57,8 @@
     }
   });
 
-  function isValidDropboxUrl(url) {
-    return /^https:\/\/www\.dropbox\.com\/s\//i.test(url);
+   function isValidDropboxUrl(url) {
+    return /^https:\/\/www\.dropbox\.com\/.*\.(pdf|docx|pptx|xlsx)$/i.test(url);
   }
 </script>
 </body>
