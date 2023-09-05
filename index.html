@@ -46,20 +46,13 @@
 <script>
   document.getElementById("generateBtn").addEventListener("click", function() {
     var urlInput = document.getElementById("urlInput").value.trim();
-    if (isValidDropboxUrl(urlInput)) {
+   
       var base64Url = btoa(urlInput);
-      var pdfUrl = `viewer.html?magazineMode=true&pdfurl=${base64Url}`;
+      var pdfUrl = window.location.origin+`/viewer.html?magazineMode=true&pdfurl=${base64Url}`;
       document.getElementById("output").innerHTML = `
         <a href="${pdfUrl}" target="_blank">${pdfUrl}</a>
       `;
-    } else {
-      document.getElementById("output").innerHTML = "Invalid Dropbox URL";
-    }
   });
-
-   function isValidDropboxUrl(url) {
-    return /^https:\/\/www\.dropbox\.com\/.*\.(pdf|docx|pptx|xlsx)$/i.test(url);
-  }
 </script>
 </body>
 </html>
